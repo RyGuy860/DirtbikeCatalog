@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<h1>Edit Dirt Bike Details</h1>
+<form action="{{ url_for('editDirtbike', manufacture_id = manufacture_id, bikes_id=bikes.id)}}" method="POST">
+<input type="text" size="30" name="name" placeholder="{{bikes.name}}">
+<input type="text" size="30" name="size" placeholder="{{bikes.size}}">
+<input type="text" size="30" name="description" placeholder="{{bikes.description}}">
+<input type="text" size="30" name="price" placeholder="{{bikes.price}}">
+<input type="submit" value="Edit">
+<a href="{{url_for('bikeByManufacturePage', manufacture_id = bikes.manufacture_id)}}">Cancel</a>
+</form>
+
+{% endblock %}

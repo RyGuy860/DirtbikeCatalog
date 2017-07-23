@@ -1,0 +1,30 @@
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="jumbotron">
+<div class="text-center">
+	
+
+<h1>Welcome To Ry's Dirtbike Shop</h1>
+
+<p>Below you will find a list for manufactures we carry!</p>
+</div>
+</div>
+
+</br>
+</br>
+
+{% for m in manufacture %}
+
+
+<a href="{{url_for('bikeByManufacturePage', manufacture_id = m.id)}}"><h3>{{m.name}}</h3></a>
+</br>
+
+</br>
+</br>
+
+{% endfor %}
+
+{% endblock %}

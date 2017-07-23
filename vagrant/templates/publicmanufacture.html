@@ -1,0 +1,21 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<h1>Welcome To Ry's Dirtbike Shop</h1>
+
+</br>
+</br>
+
+{% for m in manufacture %}
+
+{{m.name}}
+</br>
+
+</br>
+
+
+{% endfor %}
+
+
+{% endblock %}

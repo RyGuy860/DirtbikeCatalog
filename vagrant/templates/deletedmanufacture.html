@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<h1> Are you sure you want to delete your {{manufacture.name}} Manufacture? </h1>
+
+<form action="{{ url_for('deleteManufacture', manufacture_id = manufacture.id)}}" method = 'post'>
+
+<input type='submit', value = 'Delete'>
+
+
+<button class="btn-button">
+	<a style="margin-left: 20px;" href = "{{ url_for('manufacturePage', manufacture_id = manufacture_id)}}"> Cancel </a>
+</button>
+
+</form>
+
+{% endblock %}

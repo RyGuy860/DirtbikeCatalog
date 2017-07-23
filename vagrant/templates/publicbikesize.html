@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="jumbotron">
+	<h1 class="text-center"> Bikes we sell by {{manufacture.name}}</h1>
+</div>
+
+
+<p>Pricing is subject to change.</p>
+
+{% for b in bike %}
+
+<h1>{{b.name}}</h1>
+
+<h2>{{b.size}}</h2>
+
+<h2>{{b.description}}</h2>
+
+<h2>{{b.price}}</h2>
+</br>
+
+</br>
+{% endfor %}
+
+<a href="{{url_for('manufacturePage')}}"><button class="btn btn-default">Back</button></a>
+
+{% endblock %}

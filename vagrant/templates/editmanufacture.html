@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<h1>Edit Manufacture</h1>
+<form action="{{ url_for('editManufacture', manufacture_id = manufacture.id)}}" method="POST">
+<input type="text" size="30" name="name" placeholder="{{manufacture.name}}">
+<input type="submit" value="Edit">
+<a href = "{{ url_for('manufacturePage', manufacture_id = manufacture_id)}}"> Cancel </a>
+</form>
+
+{% endblock %}

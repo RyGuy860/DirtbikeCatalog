@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="jumbotron">
+	<h1 class="text-center">Bikes made by {{manufacture.name}}</h1>
+</div>
+
+
+<!--MESSAGE FLASHING EXAMPLE -->
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+
+<ul>
+{% for message in messages %}
+  <li><strong>{{message}}</strong></li>
+  {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+<a href="{{url_for('newDirtbike', manufacture_id = manufacture.id)}}"><button class="btn btn-success">Create your own bike!</button></a>
+</br>
+</br>
+<p>Pricing is subject to change.</p>
+{% for b in bike %}
+
+<h1>{{b.name}} </h1>
+
+
+<h2> {{b.size}}</h2>
+
+<h2>{{b.description}}</h2>
+
+
+<h2> {{b.price}}</h2>
+<div class="row">
+	
+<div class="col-md-1">
+	<a href="{{url_for('editDirtbike', manufacture_id = manufacture.id, bikes_id=b.id)}}"><button class="btn btn-primary">Edit</button></a>
+</div>
+
+<div class="col-md-1">
+	<a href="{{url_for('deleteDirtbike', manufacture_id = manufacture.id, bikes_id=b.id)}}"><button class="btn btn-danger">Delete</button></a>
+</div>
+
+</div>
+</br>
+</br>
+
+{% endfor %}
+<a href="{{url_for('manufacturePage')}}"><button class="btn btn-default" style="margin-bottom: 10px;">Back</button></a>
+{% endblock %}

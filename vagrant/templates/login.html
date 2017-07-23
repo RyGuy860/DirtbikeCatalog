@@ -1,0 +1,65 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<head>
+	<title>Login</title>
+	<!--LOAD PRE-REQUISITES FOR GOOGLE SIGN IN -->
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+
+<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+
+<!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
+</head>
+<body>
+<!-- GOOGLE PLUS SIGN IN BUTTON-->
+
+        
+<div class="jumbotron" class="text-center">
+	<h1 class="text-center">Login into Ry's Dirtbike Shop</h1>
+	<div id="signInButton" class="text-center">
+	<h4>Login with your Google Account</h4>
+          <span class="g-signin"
+            data-scope="openid email"
+            data-clientid="1097361990507-kia5v4hce0g1bv6b8h90se8b6j3i4q38.apps.googleusercontent.com"
+            data-redirecturi="postmessage"
+            data-accesstype="offline"
+            data-cookiepolicy="single_host_origin"
+            data-callback="signInCallback"
+            data-approvalprompt="force">
+          </span>
+        </div>
+	<div id="result"></div>
+</div> 
+
+
+
+<script>
+	function signInCallback(authResult) {
+		if (authResult['code']) {
+			$('#signInButton').attr('style', 'display: none');
+
+			$.ajax({
+				type: 'POST',
+				url: '/gconnect?state={{STATE}}',
+				processData: false,
+				contentType: 'application/octet-stream; charset=utf-8',
+				data: authResult['code'],
+				success: function(result) {
+					if (result) {
+						$('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
+						setTimeout(function() {
+							window.location.href = "/dirtbikes/";
+						}, 4000);
+					}else if (authResult['error']) {
+						console.log('There was an error:' + authResult['error']);
+					}else {
+						$('#result').html('Failed to make a server-side call. Check your configuration and console.');
+					}
+				}
+			})
+		}
+	}
+</script>
+<!--END GOOGLE PLUS SIGN IN BUTTON -->
+{% endblock %}

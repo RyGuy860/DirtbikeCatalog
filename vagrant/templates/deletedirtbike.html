@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<h1> Are you sure you want to delete your {{bikes.name}} {{bikes.size}} bike? </h1>
+
+<form action="{{ url_for('deleteDirtbike',manufacture_id = bikes.manufacture_id, bikes_id=bikes.id)}}" method = 'post'>
+
+<input type='submit', value = 'Delete'>
+
+
+<button class="btn-button">
+	<a style="margin-left: 20px;" href = "{{ url_for('bikeByManufacturePage', manufacture_id = bikes.manufacture_id)}}"> Cancel </a>
+</button>
+
+</form>
+
+{% endblock %}
