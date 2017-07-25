@@ -229,10 +229,10 @@ def newManufacture():
 # Edit a your manufacture page
 @app.route('/dirtbikes/<int:manufacture_id>/edit/', methods=['GET', 'POST'])
 def editManufacture(manufacture_id):
-    editedManufacture = session.query(Manufacture)\
-                                    .filter_by(id=manufacture_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    editedManufacture = session.query(Manufacture)\
+                                    .filter_by(id=manufacture_id).one()
     if editedManufacture.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are\
         not authorized to edit this Manufacture. Please create\
@@ -252,10 +252,10 @@ def editManufacture(manufacture_id):
 # Delete your manufacture page
 @app.route('/dirtbikes/<int:manufacture_id>/delete/', methods=['GET', 'POST'])
 def deleteManufacture(manufacture_id):
-    manufactureToDelete = session.query(Manufacture)\
-                                       .filter_by(id=manufacture_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    manufactureToDelete = session.query(Manufacture)\
+                                       .filter_by(id=manufacture_id).one()
     if manufactureToDelete.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert(' \
         You are not authorized to delete this Manufacture.');}\
@@ -318,10 +318,9 @@ def newDirtbike(manufacture_id):
 @app.route('/dirtbikes/<int:manufacture_id>/<int:bikes_id>/edit/',
            methods=['GET', 'POST'])
 def editDirtbike(manufacture_id, bikes_id):
-
-    editedBike = session.query(Bikes).filter_by(id=bikes_id).one()
     if 'username' not in login_session:
         return redirect('/login')
+    editedBike = session.query(Bikes).filter_by(id=bikes_id).one()
     if editedBike.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert(\
         'You are not authorized to edit this Bike. \

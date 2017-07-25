@@ -3,6 +3,7 @@ import sys
 from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref
 from sqlalchemy import create_engine
 
 Base = declarative_base()
@@ -24,6 +25,7 @@ class Manufacture(Base):
     name = Column(String(20), nullable=False)
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
+    
 
     @property
     def serialize(self):
@@ -42,7 +44,7 @@ class Bikes(Base):
     description = Column(String(350))
     price = Column(String(12))
     manufacture_id = Column(Integer, ForeignKey('manufacture.id'))
-    manufacture = relationship(Manufacture)
+    manufacture = relationship('Manufacture', backref=backref('bikes', cascade='all,delete'))
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
