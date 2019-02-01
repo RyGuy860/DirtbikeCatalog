@@ -6,7 +6,7 @@ This project onsists of developing an application that provides a list of items 
 # Getting started!
 
 - First you can clone this project to your local machine https://github.com/RyGuy860/DirtbikeCatalog.git
-- Second you will ned to cd to the vagrant folder and start up the virtual machine with the following commands
+- Second you will need to cd to the vagrant folder and start up the virtual machine with the following commands
   - vagrant up
   - vagrant ssh
 - Third you will want to run the file named dirtbikeshop.py in your termial with the following command:
